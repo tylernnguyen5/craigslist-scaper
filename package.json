@@ -1,0 +1,17 @@
+{
+  "name": "puppeteer-scrapping-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chromium": "^2.1.2",
+    "puppeteer": "^5.0.0"
+  }
+}
