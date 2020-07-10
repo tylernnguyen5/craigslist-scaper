@@ -8,7 +8,7 @@ async function main() {
     const page = await browser.newPage();
     await page.goto(url);
 
-    const html = page.content();
+    const html = await page.content();
 
     const $ = cheerio.load(html);
 
@@ -31,6 +31,8 @@ async function main() {
         .get();
 
     console.log(results);
+
+    await browser.close()
 }
 
 main();
