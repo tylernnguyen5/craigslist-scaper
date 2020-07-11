@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 const mongoose = require('mongoose');
+const Listing = require('./model/Listing');
 
 // DB Credentials - MLab
 // username: craigslist_user0
@@ -9,7 +10,7 @@ const mongoose = require('mongoose');
 async function connectToMongoDb() {
     await mongoose.connect(
         "mongodb+srv://craigslist_user0:superstrong1@aws-sydney0.xfteb.mongodb.net/craigslistlistings?retryWrites=true&w=majority",
-        { useNewUrlParser: true }
+        { useNewUrlParser: true, useUnifiedTopology: true }
     );
 
     console.log("Connected to MongoDB");
@@ -59,6 +60,12 @@ async function scrapeJobDescription(listings, page) {
         listings[i].jobDescription = jobDescription;
         listings[i].compensation = compensation;
 
+        // Save data to the Listing model
+        const listingModel = new Listing(listings[i]);
+
+        await listingModel.save();
+
+
         await sleep(1000); // 1 second sleep
     } 
 }
@@ -70,18 +77,20 @@ async function sleep(milliseconds) {
 
 
 async function main(){
+    await connectToMongoDb();
+
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
 
-    const listings = scrapeListings(page);
+    const listings = await scrapeListings(page);
 
-    const listingsWithJobDescription = scrapeJobDescription(listings, page);
+    await scrapeJobDescription(listings, page);
 
 
     console.log(listings);
 
-    
     await browser.close()
 }
+
 
 main();
