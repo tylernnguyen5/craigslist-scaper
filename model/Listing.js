@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const listingSchema = new mongoose.Schema({
     title: String,
     datePosted: Date,
-    neighborhodd: String,
+    neighborhood: String,
     url: String,
     jobDescription: String,
     compensation: String

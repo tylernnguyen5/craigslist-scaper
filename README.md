@@ -1,4 +1,17 @@
-Might need set up sandbox & unix dependencies:
-https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#chrome-headless-doesnt-launch-on-unix
+# Craigslist Scraper 
 
-Be careful with the user namespace cloning
+The application will access the website called **Craigslist in San Francisco Bay Area**, look into the list of jobs for **software/qa/dba/etc** and then scrape the `title, date posted, neighborhood, URL, job description and compensation (if available)` of each listing. 
+
+The data will then be stored inside a MongoDB database after you stop the program. I used [MLab](https://mlab.com/) to set up the database.
+
+
+## Demo
+
+![Demo GIF](https://gph.is/1mvaIqy)
+
+## Dependeices 
+
+- Nodejs 
+- [Puppeteer](https://pptr.dev/)
+- Cheerio
+- NoSQL MongoDB

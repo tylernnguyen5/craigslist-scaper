@@ -3,12 +3,10 @@ const cheerio = require('cheerio');
 const mongoose = require('mongoose');
 const Listing = require('./model/Listing');
 
-// DB Credentials - MLab
-// username: craigslist_user0
-// password: superstrong1
-
+// Function to the MongoDB
 async function connectToMongoDb() {
     await mongoose.connect(
+        // CHANGEME: change the credentials to specific database
         "mongodb+srv://craigslist_user0:superstrong1@aws-sydney0.xfteb.mongodb.net/craigslistlistings?retryWrites=true&w=majority",
         { useNewUrlParser: true, useUnifiedTopology: true }
     );
@@ -16,6 +14,7 @@ async function connectToMongoDb() {
     console.log("Connected to MongoDB");
 }
 
+// Function to scrape the title, posted date, URL and neighborhood of each listing
 async function scrapeListings(page) {
     let url = "https://sfbay.craigslist.org/d/software-qa-dba-etc/search/sof";
     
@@ -46,9 +45,9 @@ async function scrapeListings(page) {
     return listings
 }
 
-
+// Function to scrape the job description and compensation (if available) of each listing
 async function scrapeJobDescription(listings, page) {
-    for (let i = 0; i < listings.length; i++) {
+    for (let i = 0; i < listings.length; i++) { 
         await page.goto(listings[i].url);
         
         const html = await page.content();
@@ -65,20 +64,20 @@ async function scrapeJobDescription(listings, page) {
 
         await listingModel.save();
 
-
         await sleep(1000); // 1 second sleep
     } 
 }
 
-
+// Sleep function
 async function sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
-
+// Main function
 async function main(){
     await connectToMongoDb();
 
+    // CHANGEME: remove { headless: false} if you want to run in headless state
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
 
@@ -86,11 +85,9 @@ async function main(){
 
     await scrapeJobDescription(listings, page);
 
-
     console.log(listings);
 
     await browser.close()
 }
-
 
 main();
