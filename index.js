@@ -47,7 +47,7 @@ async function scrapeListings(page) {
 
 // Function to scrape the job description and compensation (if available) of each listing
 async function scrapeJobDescription(listings, page) {
-    for (let i = 0; i < listings.length; i++) { 
+    for (let i = 0; i < listings.length; i++) {     // I don't user .each because each page needs to be loaded in order to scrape the job description and compensation
         await page.goto(listings[i].url);
         
         const html = await page.content();
