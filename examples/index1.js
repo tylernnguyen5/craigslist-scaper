@@ -1,35 +1,32 @@
 const puppeteer = require('puppeteer');
+const cheerio = require('cheerio');
 
 
-(async () => {
-    try {
+// Main function
+async function main() {
+    let url = 'https://www.imdb.com/title/tt0111161/?ref_=nv_sr_srsg_0';
 
-        let url = 'https://www.imdb.com/title/tt0111161/?ref_=nv_sr_srsg_0';
+    // CHANGEME: remove { headless: false} if you want to run in headless state
+    const browser = await puppeteer.launch({
+        headless: false
+    });
 
-        const browser = await puppeteer.launch({
-            args: [
-                '--no-sandbox', 
-                '--disable-setuid-sandbox'
-            ],
-            ignoreDefaultArgs: ['--disable-extensions']
-        });
+    const page = await browser.newPage();
 
-        const context = await browser.createIncognitoBrowserContext();
+    await page.goto(url, {
+        waitUntil: 'networkidle2'
+    });
+    
+    const html = await page.content();
+    const $ = cheerio.load(html);
 
-        const page = await context.newPage();
+    // Scrape
 
-        await page.goto(url, {waitUntil: 'networkidle2'});
 
-        await page.screenshot({path: 'example.png'});
-      
-        
-        await context.close();
-        await browser.close();
+    await browser.close()
+}
 
-    } catch (error) {
-        console.log(error)
-    }
-})();
+main();
 
 
 
