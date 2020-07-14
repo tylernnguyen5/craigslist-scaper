@@ -1,6 +1,6 @@
 # Craigslist Scraper 
 
-The application will access the website called **Craigslist in San Francisco Bay Area**, look into the list of jobs for **software/qa/dba/etc** and then scrape the `title, date posted, neighborhood, URL, job description and compensation (if available)` of each listing using Cheerio. which is an implementation of jQuery.
+The application will access the website called **Craigslist in San Francisco Bay Area**, look into the list of jobs for **software/qa/dba/etc** and then scrape the `title, date posted, neighborhood, URL, job description and compensation (if available)` of each listing using Puppeteer and Cheerio. which is an implementation of jQuery.
 
 The data will then be stored inside a MongoDB database after the program is stopped. I used [MLab](https://mlab.com/) to set up the MongoDB database.
 
