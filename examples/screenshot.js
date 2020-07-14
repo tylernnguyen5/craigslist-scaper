@@ -20,7 +20,7 @@ const puppeteer = require('puppeteer');
     const datetime = new Date();
 
     await page.screenshot({
-        path: `screenshots/cnn-${datetime.toISOString()}.png`
+        path: `../screenshots/cnn-${datetime.toISOString()}.png`
     });
 
     await browser.close();
