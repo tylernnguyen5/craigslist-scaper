@@ -23,5 +23,6 @@ const puppeteer = require('puppeteer');
         path: `../screenshots/cnn-${datetime.toISOString()}.png`
     });
 
+    console.log("Check \"screenshots\" directory for captured screenshot");
     await browser.close();
 })();

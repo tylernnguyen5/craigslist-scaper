@@ -10,7 +10,7 @@ I also implemented some other possible use cases of using Puppeteer in the `exam
 
 - Simply run `npm install` to install the dependencies.
 - `npm start` to start the scraper application
-- Or run `node examples/file-name` to execute other examples of using Puppeteer
+- Or check `package.json` for other scripts to run other examples of using Puppeteer
 
 ## Demo
 

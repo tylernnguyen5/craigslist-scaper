@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
+    "screenshot": "cd examples && node ./screenshot.js",
+    "scrape-table": "cd examples && node ./dynamic-table-scraping.js",
+    "scrape-cnn-headlines": "cd examples && node ./cnn-headlines-scraper.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
