@@ -1,6 +1,5 @@
 .vscode
 node_modules
-package-lock.json
 test.html
 yarn.lock
 demo/.DS_Store
