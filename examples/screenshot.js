@@ -17,10 +17,13 @@ const puppeteer = require('puppeteer');
     await page.evaluateHandle('document.fonts.ready');
 
     // Screenshot
-    const datetime = new Date();
+    const datetime = new Date().toISOString()
+      .replace('T', '--')
+      .replace(/:/g, '-')
+      .slice(0 , -5);
 
     await page.screenshot({
-        path: `../screenshots/cnn-${datetime.toISOString()}.png`
+      path: `../screenshots/cnn-${datetime}.png`
     });
 
     console.log("Check \"screenshots\" directory for captured screenshot");

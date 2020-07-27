@@ -15,9 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "chromium": "^2.1.2",
     "mongoose": "^5.9.23",
-    "puppeteer": "^5.0.0",
+    "puppeteer": "^5.2.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   }
